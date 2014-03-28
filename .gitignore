@@ -1,6 +1,10 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+/target
+/.settings
+.classpath
+.project
+*.log
+*.tlog
+*.out
+*.epoch
+*~
+/.attach_pid*
