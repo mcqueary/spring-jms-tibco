@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context        
+		http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+ 	<context:property-placeholder location="classpath:test.properties" />
+ 	                          
+	<bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+		<property name="environment">
+			<props>
+				<prop key="java.naming.factory.initial">com.tibco.tibjms.naming.TibjmsInitialContextFactory</prop>
+				<prop key="java.naming.provider.url">tcp://localhost:7222</prop>
+				<prop key="java.naming.security.principal">""</prop>
+				<prop key="java.naming.security.credentials">""</prop>
+			</props>
+		</property>
+	</bean>
+
+    <bean id="jmsConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiTemplate" ref="jndiTemplate" />
+		<property name="jndiName" value="QueueConnectionFactory" />
+	</bean>
+
+	<bean id="destination" class="org.springframework.jndi.JndiObjectFactoryBean">
+	    <property name="jndiTemplate" ref="jndiTemplate" />
+		<property name="jndiName" value="queue.sample" />
+	</bean>
+	
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="defaultDestination" ref="destination" />
+		<property name="sessionAcknowledgeModeName" value="CLIENT_ACKNOWLEDGE"/>
+		<property name="sessionTransacted" value="false" />
+	</bean>
+
+	<bean id="messageService" class="com.tibco.mcqueary.ems.samples.springjms.MessageService" />
+
+</beans>
