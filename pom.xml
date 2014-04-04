@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.tibco.mcqueary.ems.samples</groupId>
-	<artifactId>spring-with-tibjms</artifactId>
+	<artifactId>spring-jms-tibco</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>spring-with-tibjms</name>
+	<name>spring-jms-tibco</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
