@@ -12,10 +12,10 @@ Service (EMS).
 The example is provided mainly to demonstrate and help you verify (with EMS):
 
 1. A correct Spring context setup for both JNDI and non-JNDI JMS configuration 
-
 2. Basic connectivity with EMS, using this Spring setup.
 
-Please note that you will 
+Please note that you will need to start your own EMS broker (tibemsd) in order to
+run the contained JUnit tests.
 
 About the dependencies
 ======================
@@ -45,7 +45,7 @@ mvn install:install-file -Dfile=/home/larry/tibco/ems/7.0/lib/tibcrypt.jar \
 mvn install:install-file -Dfile=/home/larry/tibco/ems/7.0/lib/jms.jar \
 	-DgroupId=com.tibco -DartifactId=jms -Dversion=7.0.1 -Dpackaging=jars
 
-For EMS 8 and above, the same applies, but make sure to rename "jms.jar" to 
-"jms-2.0.jar" and update the POM accordingly.
+For EMS 8 and above, the same applies, but change "jms.jar" to "jms-2.0.jar" and 
+update the POM accordingly.
 
 
